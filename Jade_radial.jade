@@ -1,0 +1,82 @@
+!!! 5
+html
+  head
+    meta(name='viewport', content='user-scalable=no, width=device-width')
+    title Simple Radar Chart
+    script(src='http://mbostock.github.com/d3/d3.js?2.5.0')
+    script(src='http://canvg.googlecode.com/svn/trunk/rgbcolor.js')
+    script(src='http://canvg.googlecode.com/svn/trunk/canvg.js')
+    script(src='http://code.jquery.com/jquery-1.7.1.min.js')
+  style
+    .axis line {
+    stroke: #222;
+    }
+    .axis path {
+    fill: none;
+    stroke: #222;
+    }
+    .axis + .axis g text {
+    display: none;
+    }
+    #clearfooter {
+    height: 200px;
+    }
+  body
+    script
+      $(document).ready(function(){
+
+        var svgsrc = !{JSON.stringify(svgsrc)};
+        var setHeight = !{JSON.stringify(setHeight)};
+        var setWidth = !{JSON.stringify(setWidth)};
+          console.log(svgsrc);
+          console.log("setWidth: ",setWidth);
+
+          document.getElementById("radial_chart").innerHTML = svgsrc;
+
+      height = setHeight;
+      width = setWidth;
+      widthPadding = 2;
+      heightPadding = 20;
+      var angle = d3.scale.linear()
+      .range([0, 2 * Math.PI]);
+      angle.domain([0, 3]);
+      outerRadius = (height / 2) - (height * .21),
+      innerRadius = 60;
+      var radius = d3.scale.linear()
+      .range([0, outerRadius]);
+      radius.domain([0, 10]);
+      //var svg = document.getElementById("mySVG");
+      //var svg = d3.select("#radial_chart");
+      var svg = d3.select("#radial_chart").selectAll(".axis");
+      var capitalMeta = ["Social", "Focus", "Activity"];
+      // create Axis
+      svg.selectAll(".axis")
+      .data(d3.range(angle.domain()[1]))
+      .enter().append("g")
+      .attr("class", "axis")
+      .attr("transform", function(d) { return "rotate(" + angle(d) * 180 / Math.PI + ")"; })
+      .call(d3.svg.axis()
+      .scale(radius.copy().range([-13, -outerRadius]))
+      .ticks(5)
+      .orient("left"))
+      .append("text")
+      .attr("y",
+      function (d) {
+      if (width < 455){
+      return (-(width * .55));
+      }
+      else{
+      return (-(width * .43) - (height *.07));
+      }
+      })
+      .attr("dy", ".71em")
+      .attr("text-anchor", "middle")
+      .text(function(d, i) { return capitalMeta[i]; })
+      .attr("style","font-size:12px;");
+
+      canvg();
+      });
+
+    #radial_chart
+    
+
