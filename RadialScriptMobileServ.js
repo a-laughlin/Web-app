@@ -122,16 +122,23 @@ var svg = d3.select(el).append("svg")
         function (d) {
           if (window.innerWidth < 455){
             console.log("innerWidth less than 455: ",window.innerWidth);
-            return -(0);
+            return -(5000);
           }
           else{
             console.log("innerWidth greater than 455: ",window.innerWidth);
-            return -(0);
+            return -(500);
           }
         })
       .attr("dy", "0em");
 
+      svg.selectAll(".axis")
+      .attr("stroke","#222");
 
+      svg.selectAll(".axis")
+      .attr("fill","none");
+
+     // svg.selecAll(".tick")
+     // .attr("display","none");
 
   svg.selectAll(".layer")
       .data(layers)
