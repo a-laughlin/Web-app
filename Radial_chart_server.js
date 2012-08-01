@@ -15,6 +15,7 @@ var http = require('http'),
     child_proc = require('child_process'),
     w,
     h,
+    token,
     scripts = ["d3.min.js",
                 "d3.v2.js",
                "d3.layout.min.js",
@@ -41,6 +42,7 @@ var http = require('http'),
  "America/Los_Angeles"
  );
     
+console.log(__dirname);
 /*
 var job = new cronJob('9 15 * * *', function(){
     // Runs every weekday (Monday through Friday)
@@ -62,14 +64,15 @@ var app = require('express').createServer();
 //set path to the views (template) directory
 app.set('views', __dirname + '/views');
 //set path to static files
-app.use(express.static(__dirname + '/../public'));
+//app.use(express.static(__dirname + '/../public'));
 //handle GET requests on /
 app.get('/', function(req, res){
 
   w = (url.parse(req.url, true).query['width']);
   h = (url.parse(req.url, true).query['height']);
+  token = (url.parse(req.url, true).query['bearer_token']);
 
-request("http://dcaps-staging.media.mit.edu:8080/api/reality_analysis_service/get_reality_analysis_data?document_key=radialData&bearer_token=8e2f9e3129", function (err, result, json) {
+request("http://dcaps-staging.media.mit.edu:8080/api/reality_analysis_service/get_reality_analysis_data?document_key=radialData&bearer_token="+token, function (err, result, json) {
     
     json = JSON.parse(json);
     //console.log("my radial data: ",json.radialData.data);
