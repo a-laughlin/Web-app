@@ -82,13 +82,12 @@ var area = d3.svg.area.radial()
 
 var heightPadding = 20;
 var widthPadding = 2;
-var positionXPadding = 30;
 
 var svg = d3.select(el).append("svg")
     .attr("width", width + 100)
     .attr("height", height)
   .append("g")
-    .attr("transform", "translate(" + ((width / 2) + positionXPadding) + "," + ((height / 2) + heightPadding) + ")");
+    .attr("transform", "translate(" + ((width / 2) + widthPadding) + "," + (((height / 2)) + heightPadding) + ")");
 
   
   var layers = stack(nest.entries(data));

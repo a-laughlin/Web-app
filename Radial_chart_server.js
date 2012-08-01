@@ -75,7 +75,8 @@ app.get('/', function(req, res){
 request("http://dcaps-staging.media.mit.edu:8080/api/reality_analysis_service/get_reality_analysis_data?document_key=radialData&bearer_token="+token, function (err, result, json) {
     
     json = JSON.parse(json);
-    //console.log("my radial data: ",json.radialData.data);
+
+    console.log("my radial data: ",json.radialData.data);
 
     jsdom.env({features:{QuerySelector:true}, html:htmlStub, scripts:scripts, done:function(errors, window) {
 
