@@ -84,7 +84,7 @@ var heightPadding = 20;
 var widthPadding = 2;
 
 var svg = d3.select(el).append("svg")
-    .attr("width", width + 100)
+    .attr("width", width)
     .attr("height", height)
   .append("g")
     .attr("transform", "translate(" + ((width / 2) + widthPadding) + "," + (((height / 2)) + heightPadding) + ")");
@@ -186,7 +186,7 @@ var svg = d3.select(el).append("svg")
           .attr("id","legend");
           */
 
-  var legendOffset = 110;
+  var legendOffset = 78;
   var legendMarginLeft = -50;
 
 var arrayOfTypes = ["User","Average High-Low"];
