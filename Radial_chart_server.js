@@ -27,7 +27,7 @@ var http = require('http'),
     fs = require("fs"),
     formidable = require("formidable"),
     path = require('path'),
-    request = require('request')
+    request = require('request'),
     svgsrc = '',
     svgAxesSrc = '';
 
